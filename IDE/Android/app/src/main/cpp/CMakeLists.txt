@@ -24,7 +24,7 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Werror")
 #
 # FIPS Ready requires different preprocessor flags, files, and a specific file
 # ordering as set up below.
-set(WOLFSSL_PKG_TYPE "normal")
+set(WOLFSSL_PKG_TYPE "fipsready")
 
 # -------------------------- Math Library Selection ----------------------------
 # wolfCrypt math library selection, used to switch on below. Should be one of:
@@ -146,9 +146,9 @@ elseif("${WOLFSSL_PKG_TYPE}" MATCHES "fipsready")
         # FIPS proper in the future. Please contact support@wolfssl.com for assistance
         # properly compiling for use with wolfCrypt FIPS variants.
         add_definitions(
-                -DWOLFSSL_FIPS_READY -DHAVE_FIPS -DHAVE_FIPS_VERSION=7
-                -DHAVE_FIPS_VERSION_MAJOR=7 -DHAVE_FIPS_VERSION_MINOR=0
-                -DHAVE_FIPS_VERSION_PATCH=0 -DWC_RNG_SEED_CB -DHAVE_THREAD_LS
+                -DHAVE_FIPS -DHAVE_FIPS_VERSION=5
+                -DHAVE_FIPS_VERSION_MAJOR=7 -DHAVE_FIPS_VERSION_MINOR=1
+                -DHAVE_FIPS_VERSION_PATCH=2 -DWC_RNG_SEED_CB -DHAVE_THREAD_LS
 
                 -DWOLFSSL_WOLFSSH -DNO_DO178 -DHAVE_REPRODUCIBLE_BUILD -DWC_NO_ASYNC_THREADING
                 -DNO_OLD_TLS -DWOLFSSL_TLS13 -DHAVE_TLS_EXTENSIONS -DHAVE_SNI
