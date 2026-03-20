@@ -11,7 +11,7 @@ android {
         /* Min SDK should stay at 24 to detect if we try to use newer APIs
          * than were available in that Android SDK. We have users who are still
          on SDK 24 (ref ZD 18311) */
-        minSdkVersion 23
+        minSdkVersion 17
         //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 23
         versionCode 1
