@@ -4,6 +4,8 @@ android {
     //noinspection GradleDependency
     compileSdk 23
     buildToolsVersion '30.0.3'
+    //noinspection GradleDependency
+    compileSdkVersion 30
     defaultConfig {
         applicationId "com.example.wolfssl"
         /* Min SDK should stay at 24 to detect if we try to use newer APIs
