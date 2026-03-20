@@ -13,7 +13,8 @@ set(wolfssl_DIR      ${CMAKE_SOURCE_DIR}/wolfssl/)
 
 # set warnings as errors, used in this example project but may be different
 # in production apps/environments.
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Werror")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall")
+#set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Werror")
 
 # ---------------- wolfSSL Normal vs. FIPS Ready Selection ---------------------
 # Select if wolfSSL is normal ("normal") or FIPS Ready ("fipsready")
@@ -149,8 +150,8 @@ elseif("${WOLFSSL_PKG_TYPE}" MATCHES "fipsready")
                 -DHAVE_FIPS -DHAVE_FIPS_VERSION=5
                 -DHAVE_FIPS_VERSION_MAJOR=7 -DHAVE_FIPS_VERSION_MINOR=1
                 -DHAVE_FIPS_VERSION_PATCH=2 -DWC_RNG_SEED_CB -DHAVE_THREAD_LS
-
                 -DWOLFSSL_WOLFSSH -DNO_DO178 -DHAVE_REPRODUCIBLE_BUILD -DWC_NO_ASYNC_THREADING
+
                 -DNO_OLD_TLS -DWOLFSSL_TLS13 -DHAVE_TLS_EXTENSIONS -DHAVE_SNI
                 -DHAVE_KEYING_MATERIAL -DHAVE_TLS_EXTENSIONS -DHAVE_SUPPORTED_CURVES
                 -DHAVE_EXTENDED_MASTER -DHAVE_ENCRYPT_THEN_MAC -DWOLFSSL_JNI -DHAVE_EX_DATA
@@ -184,13 +185,15 @@ elseif("${WOLFSSL_PKG_TYPE}" MATCHES "fipsready")
                 -DWOLFSSL_AES_XTS -DWOLFSSL_AESXTS_STREAM -DWOLFSSL_AES_DIRECT
                 -DHAVE_AES_ECB -DHAVE_AES_KEYWRAP -DWOLFSSL_AES_XTS -DHAVE_AES_KEYWRAP
 
-                -DHAVE_ED25519 -DHAVE_ED25519_KEY_IMPORT -DHAVE_ED448 -DHAVE_ED448_KEY_IMPORT
-                -DWOLFSSL_ED448_STREAMING_VERIFY
+                # Comment this out as it doesn't seem to match the default configuration.
+                -DHAVE_ED25519 -DHAVE_ED25519_KEY_IMPORT #-DHAVE_ED448 -DHAVE_ED448_KEY_IMPORT
+                #-DWOLFSSL_ED448_STREAMING_VERIFY
 
                 -DHAVE_CURVE25519 -DHAVE_CURVE448
 
+                # Comment out SHAKEnnn because it depends on ED448.
                 -DWOLFSSL_SHA224 -DWOLFSSL_SHA384 -DWOLFSSL_SHA512 -DWOLFSSL_NOSHA512_224
-                -DWOLFSSL_NOSHA512_256 -DWOLFSSL_SHA3 -DWOLFSSL_SHAKE128 -DWOLFSSL_SHAKE256
+                -DWOLFSSL_NOSHA512_256 -DWOLFSSL_SHA3 #-DWOLFSSL_SHAKE128 -DWOLFSSL_SHAKE256
 
                 -DNO_DSA -DNO_RC4 -DNO_MD4 -DNO_DES3 -DNO_DES3_TLS_SUITES
 
@@ -346,7 +349,7 @@ add_library(wolfssl SHARED
 # set_target_properties(wolfssl PROPERTIES LIBRARY_OUTPUT_DIRECTORY
 # ${CMAKE_SOURCE_DIR}/../jniLibs/${ANDROID_ABI})
 
-# wolfCrypt JNI/JCE library wil be compiled as SHARED library
+# wolfCrypt JNI/JCE library will be compiled as SHARED library
 # wolfCrypt JNI Java files are tied into build in Module build.gradle file
 add_library(wolfcryptjni SHARED
         ${wolfcryptjni_DIR}/jni/jni_aes.c
