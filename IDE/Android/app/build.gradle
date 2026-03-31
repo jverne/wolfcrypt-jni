@@ -4,8 +4,9 @@ android {
     //noinspection GradleDependency
     compileSdk 23
     buildToolsVersion '30.0.3'
+    // Per RiDP, 29+ is not recommended because G3 devices do not support API 29 fully.
     //noinspection GradleDependency
-    compileSdkVersion 30
+    compileSdkVersion 28
     defaultConfig {
         applicationId "com.example.wolfssl"
         /* Min SDK should stay at 24 to detect if we try to use newer APIs
