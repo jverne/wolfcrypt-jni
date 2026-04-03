@@ -12,3 +12,7 @@
 /build
 /captures
 .externalNativeBuild
+
+# SmartSDK specific
+*.dalp
+TEMP_MANIFEST.mf
