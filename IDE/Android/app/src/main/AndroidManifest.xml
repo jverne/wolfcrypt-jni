@@ -18,7 +18,7 @@
 
         <meta-data
             android:name="productId"
-            android:value="1711276068" />
+            android:value="1711276057" />
         <meta-data
             android:name="storageRootPath"
             android:value="/mnt/hdd" />
