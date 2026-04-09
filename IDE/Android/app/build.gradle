@@ -62,9 +62,7 @@ android {
 // Later Gradle moved the artefacts.
 android.applicationVariants.all { variant ->
     variant.outputs.all {
-        logger.info("DOING ${outputFileName}")
         outputFileName = "../" + outputFileName
-        logger.info("DONE ${outputFileName}")
     }
 }
 
