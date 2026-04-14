@@ -59,6 +59,23 @@ android {
         // supported, so ignore this regardless.
 //        disable 'TrulyRandom'
     }
+
+
+//  G2 linker-loader failure research. Leaving it here as a reminder for now.
+//  WARNING WARNING WARNING This may change the FIPS hash!
+//
+//    packagingOptions {
+//        jniLibs {
+//            // Don't compress the libraries for G2. AGP 7+.
+//            useLegacyPackaging false
+//            // This is for if AGP doesn't support useLegacyPackaging
+//            // noCompress += ['.so']
+//        }
+//        resources {
+//            // Don't compress the resources for G2
+//            excludes += []
+//        }
+//    }
     namespace 'com.example.wolfssl'
 }
 
